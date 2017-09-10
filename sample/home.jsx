@@ -85,6 +85,18 @@ export default class Home extends Component {
           hi
         </Button>
 
+        <Button
+          raised={true}
+          accent={true}
+          ripple={true}
+          onClick={e => {
+            console.log(this.dlg.MDComponent);
+            this.dlg.MDComponent.show();
+          }}
+        >
+          Open Dialog
+        </Button>
+
         <div>
           <Fab mini={true} ripple={true}>
             <Icon>share</Icon>
@@ -132,7 +144,7 @@ export default class Home extends Component {
           <label for="rd">Radio Box</label>
         </div>
 
-        <Textfield label="hello" fullwidth={true} required />
+        <Textfield label="hello" fullwidth required />
 
         <LayoutGrid>
           <LayoutGrid.Cell cols={6} tabletCols={8} phoneCols={12}>

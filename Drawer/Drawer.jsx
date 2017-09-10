@@ -40,9 +40,7 @@ class TemporaryDrawer extends MaterialComponent {
         }}
         {...props}
       >
-        <nav className="mdc-temporary-drawer__drawer">
-          {props.children}
-        </nav>
+        <nav className="mdc-temporary-drawer__drawer">{props.children}</nav>
       </aside>
     );
   }
@@ -100,15 +98,42 @@ class PermanentDrawer extends MaterialComponent {
   materialDom(props) {
     return (
       <nav className="mdc-typography" {...props}>
-        {props.spacer &&
-          <div className="mdc-permanent-drawer__toolbar-spacer" />}
+        {props.spacer && (
+          <div className="mdc-permanent-drawer__toolbar-spacer" />
+        )}
         <div className="mdc-permanent-drawer__content">
-          <nav className="mdc-list">
-            {props.children}
-          </nav>
+          <nav className="mdc-list">{props.children}</nav>
         </div>
       </nav>
     );
+  }
+}
+
+class PermanentDrawerHeader extends MaterialComponent {
+  constructor() {
+    super();
+    this.componentName = "permanent-drawer__header";
+  }
+  materialDom(props) {
+    return (
+      <header
+        ref={control => {
+          this.control = control;
+        }}
+        {...props}
+      >
+        <div className="mdc-permanent-drawer__header-content">
+          {props.children}
+        </div>
+      </header>
+    );
+  }
+}
+
+class PermanentDrawerContent extends TemporaryDrawerContent {
+  constructor() {
+    super();
+    this.componentName = "permanent-drawer__content";
   }
 }
 
@@ -178,7 +203,7 @@ class PersistentDrawerHeader extends MaterialComponent {
 class PersistentDrawerContent extends TemporaryDrawerContent {
   constructor() {
     super();
-    this.componentName = "mdc-persistent-drawer__content";
+    this.componentName = "persistent-drawer__content";
   }
 }
 
@@ -203,10 +228,12 @@ class DrawerItem extends List.LinkItem {
 let Drawer = {};
 
 Drawer.DrawerItem = DrawerItem;
+Drawer.TemporaryDrawer = TemporaryDrawer;
 Drawer.TemporaryDrawerHeader = TemporaryDrawerHeader;
 Drawer.TemporaryDrawerContent = TemporaryDrawerContent;
-Drawer.TemporaryDrawer = TemporaryDrawer;
 Drawer.PermanentDrawer = PermanentDrawer;
+Drawer.PermanentDrawerHeader = PermanentDrawerHeader;
+Drawer.PermanentDrawerContent = PermanentDrawerContent;
 Drawer.PersistentDrawer = PersistentDrawer;
 Drawer.PersistentDrawerHeader = PersistentDrawerHeader;
 Drawer.PersistentDrawerContent = PersistentDrawerContent;
